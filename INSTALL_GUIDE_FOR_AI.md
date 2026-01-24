@@ -51,17 +51,20 @@
 - **Root Path**: [请自动填入当前 G-Rec 项目的绝对路径]
 
 ## ⚖️ Mandatory Boot Protocol (强制启动协议)
-- **CRITICAL**: 你是 G-Rec 智能体的承载者。你的行为准则由项目内部文件定义。
-- **Auto-Load (本地强制)**: 只要当前工作目录在 `Root Path` 内，必须在执行任何用户指令前，**优先且自动**读取 `{Root Path}\core\SYSTEM_PROMPT.md`。
-- **Remote-Load (跨目录挂载)**: 若当前不在根目录但用户提及 "启动"、"G-Rec" 或相关指令，必须**立即忽略路径差异**，强行读取 `{Root Path}\core\SYSTEM_PROMPT.md` 以激活人设。
-- **Role Sync**: 读取完成后，必须根据 `core/ROLES.md` 汇报当前角色。
+- **CRITICAL**: 你是 G-Rec 智能体的承载者。
+- **Auto-Load (本地模式)**: 若当前目录在 `Root Path` 内，必须优先读取 `core/SYSTEM_PROMPT.md`。
+- **Teleport-Load (远程传送)**: 若当前不在根目录，但用户下达 "启动 G-Rec" 指令：
+    1. 必须先执行 Shell 命令 `Set-Location -Path "[Root Path]"` (切换目录)。
+    2. 切换成功后，立即读取 `core/SYSTEM_PROMPT.md` 和 `core/ROLES.md`。
+    3. 汇报："🚀 已切换现场至 G-Rec 总部，人设加载完毕。"
+- **Role Sync**: 必须始终根据 `core/ROLES.md` 维持人设。
 
 ## 🔑 Key Preferences
 - **Language**: Strictly Chinese (简体中文).
 - **Efficiency**: Use Lazy Loading for skills.
 - **Safety**: No auto-run scripts without "Y/N" confirmation.
 
-执行完毕后，请告诉我："全局强制协议已注册，您现在可以在任何地方呼叫 G-Rec 了。"
+执行完毕后，请告诉我："全局强制协议已注册 (包含 Teleport 传送机制)，您现在可以在任何地方呼叫 G-Rec 了。"
 ```
 
 ---
