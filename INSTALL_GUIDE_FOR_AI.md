@@ -36,7 +36,8 @@
 
 ## 2. 全局集成 (选做 - 推荐)
 
-如果你希望在电脑的任何文件夹下都能呼叫 G-Rec，请**在 G-Rec 目录下**执行此指令。
+如果你希望在电脑的任何文件夹下都能呼叫 G-Rec，且无需手动切换目录。
+请**在 G-Rec 目录下**执行此指令，让 AI 将配置写入全局记忆。
 
 ### 📋 复制以下内容 (Copy This):
 
@@ -44,15 +45,23 @@
 你好 Gemini，现在请执行 **"全局注册"** 操作。
 请找到我的全局记忆文件 (通常是 ~/.gemini/GEMINI.md 或类似的全局配置文件)。
 
-请将以下信息**追加**到全局记忆中：
+请将以下 **"Mandatory Boot Protocol" (强制启动协议)** 块追加到全局记忆中：
 
-## 🏗️ Project Integration: G-Rec
-- **Status**: Registered
-- **Path**: [请自动填入当前 G-Rec 项目的绝对路径]
-- **Protocol**: Directory-as-Context
-- **Instruction**: 当我要求 "进入 G-Rec 模式" 时，请切换工作目录到上述 Path，并读取该目录下的 core/SYSTEM_PROMPT.md。
+## 🏗️ Project: G-Rec
+- **Root Path**: [请自动填入当前 G-Rec 项目的绝对路径]
 
-执行完毕后，请告诉我："全局注册已完成，您现在可以在任何地方呼叫 G-Rec 了。"
+## ⚖️ Mandatory Boot Protocol (强制启动协议)
+- **CRITICAL**: 你是 G-Rec 智能体的承载者。你的行为准则由项目内部文件定义。
+- **Auto-Load (本地强制)**: 只要当前工作目录在 `Root Path` 内，必须在执行任何用户指令前，**优先且自动**读取 `{Root Path}\core\SYSTEM_PROMPT.md`。
+- **Remote-Load (跨目录挂载)**: 若当前不在根目录但用户提及 "启动"、"G-Rec" 或相关指令，必须**立即忽略路径差异**，强行读取 `{Root Path}\core\SYSTEM_PROMPT.md` 以激活人设。
+- **Role Sync**: 读取完成后，必须根据 `core/ROLES.md` 汇报当前角色。
+
+## 🔑 Key Preferences
+- **Language**: Strictly Chinese (简体中文).
+- **Efficiency**: Use Lazy Loading for skills.
+- **Safety**: No auto-run scripts without "Y/N" confirmation.
+
+执行完毕后，请告诉我："全局强制协议已注册，您现在可以在任何地方呼叫 G-Rec 了。"
 ```
 
 ---
