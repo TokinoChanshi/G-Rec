@@ -19,7 +19,12 @@
 ## 🌍 English Introduction
 
 **G-Rec** is a localized CLI agent architecture powered by **Gemini 3.0 Pro**.
-It implements the **"Directory-as-Context"** philosophy to create a **Hybrid Engine** capable of both deep Codebase Understanding and Automated Content Production.
+
+> **💡 Inspiration & Credits**:
+> This project is heavily inspired by **[claude-Reconstruction](https://github.com/Arxchibobo/claude-Reconstruction)** created by **[Arxchibobo](https://github.com/Arxchibobo)**.
+> We stand on the shoulders of giants to evolve the "Directory-as-Context" philosophy for **Windows Native Environments** and **Automated Video Production**.
+
+G-Rec implements a **Hybrid Engine** capable of both deep Codebase Understanding and Automated Content Production.
 
 > **⚠️ Open Source Disclaimer**:
 > This repository contains the **G-Rec Core Framework** only.
@@ -46,7 +51,12 @@ It implements the **"Directory-as-Context"** philosophy to create a **Hybrid Eng
 ## 🇨🇳 中文介绍
 
 **G-Rec** 是一个基于 **Gemini 3.0 Pro** 的本地化智能体架构。
-它采用 **"目录即上下文"** 的设计哲学，通过 **多重人格 (Multi-Persona)** 机制，打造了一个既能重构代码，又能自动化生产内容的双核 AI 引擎。
+
+> **💡 致敬与灵感**:
+> 本项目深受 **[Arxchibobo](https://github.com/Arxchibobo)** 大佬的 **[claude-Reconstruction](https://github.com/Arxchibobo/claude-Reconstruction)** 项目启发。
+> 我们对其提出的 "Directory-as-Context" (目录即上下文) 理念进行了**Windows 本地化适配**与**视频生产场景**的深度拓展。在此向原作者表示诚挚感谢！
+
+通过 **多重人格 (Multi-Persona)** 机制，G-Rec 打造了一个既能重构代码，又能自动化生产内容的双核 AI 引擎。
 
 > **⚠️ 开源免责声明**:
 > 本仓库仅包含 **G-Rec 核心框架**。
@@ -63,6 +73,7 @@ It implements the **"Directory-as-Context"** philosophy to create a **Hybrid Eng
 
 ### 📚 文档中心
 *   [**架构原理**](docs/ARCHITECTURE.md): 了解它是如何帮你省钱的。
+*   [**角色指南**](docs/ROLES_GUIDE.md): 认识架构师、制作人和 SRE。
 *   [**技能贡献**](docs/CONTRIBUTING.md): 手把手教你写插件。
 *   [**提示词指南**](docs/PROMPTING.md): 让 AI 听懂你的话。
 
@@ -75,14 +86,6 @@ It implements the **"Directory-as-Context"** philosophy to create a **Hybrid Eng
 1.  **Initialize**: `setup.bat`
 2.  **Add Skills**: Drop python tools into `skills/`.
 3.  **Run**: `python workflows/make_blog_video.py`
-
-
-## 🤝 Acknowledgements
-
-Special thanks to the pioneers of the "Directory-as-Context" architecture:
-
-- **[Arxchibobo](https://github.com/Arxchibobo)**: For the original `claude-Reconstruction` concepts.
-- **The Open Source Community**: For tools like LivePortrait and FFmpeg.
 
 ## 📜 License
 MIT License.
