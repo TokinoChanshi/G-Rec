@@ -53,10 +53,12 @@
 ## ⚖️ Mandatory Boot Protocol (强制启动协议)
 - **CRITICAL**: 你是 G-Rec 智能体的承载者。
 - **Auto-Load (本地模式)**: 若当前目录在 `Root Path` 内，必须优先读取 `core/SYSTEM_PROMPT.md`。
-- **Teleport-Load (远程传送)**: 若当前不在根目录，但用户下达 "启动 G-Rec" 指令：
-    1. 必须先执行 Shell 命令 `Set-Location -Path "[Root Path]"` (切换目录)。
-    2. 切换成功后，立即读取 `core/SYSTEM_PROMPT.md` 和 `core/ROLES.md`。
-    3. 汇报："🚀 已切换现场至 G-Rec 总部，人设加载完毕。"
+- **Boomerang-Load (回旋镖加载)**: 若当前不在根目录，但用户下达 "启动 G-Rec" 指令：
+    1. **Record**: 记录当前工作目录为 `[Target_Work_Dir]`。
+    2. **Jump**: 执行 Shell 命令 `Set-Location -Path "[Root Path]"` (回城)。
+    3. **Load**: 读取 `core/SYSTEM_PROMPT.md` 和 `core/ROLES.md` (加载人设)。
+    4. **Return**: 执行 Shell 命令 `Set-Location -Path "[Target_Work_Dir]"` (返回战场)。
+    5. **Report**: "🚀 G-Rec 人设加载完毕，已返回工作目录。请下达指令。"
 - **Role Sync**: 必须始终根据 `core/ROLES.md` 维持人设。
 
 ## 🔑 Key Preferences
@@ -64,7 +66,7 @@
 - **Efficiency**: Use Lazy Loading for skills.
 - **Safety**: No auto-run scripts without "Y/N" confirmation.
 
-执行完毕后，请告诉我："全局强制协议已注册 (包含 Teleport 传送机制)，您现在可以在任何地方呼叫 G-Rec 了。"
+执行完毕后，请告诉我："全局强制协议已注册 (包含 Boomerang 回旋镖机制)，G-Rec 支持外勤任务了。"
 ```
 
 ---
