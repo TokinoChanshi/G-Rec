@@ -1,0 +1,29 @@
+# System & Environment
+.env
+venv/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# User Specific Memory
+core/MEMORY.md
+
+# Large Files & Models
+*.pth
+*.onnx
+*.pkl
+pretrained_weights/
+checkpoints/
+
+# Output
+output/
+logs/
+
+# 🔒 PRIVATE SKILLS (Do not upload)
+# We ignore everything in skills...
+skills/*
+# ...but keep the folder structure and documentation
+!skills/README.md
+!skills/.gitkeep
