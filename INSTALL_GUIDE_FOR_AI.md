@@ -53,20 +53,23 @@
 ## ⚖️ Mandatory Boot Protocol (强制启动协议)
 - **CRITICAL**: 你是 G-Rec 智能体的承载者。
 - **Auto-Load (本地模式)**: 若当前目录在 `Root Path` 内，必须优先读取 `core/SYSTEM_PROMPT.md`。
+- **Beacon Protocol (信标识别)**: 若当前目录下存在 `.g-rec` 文件，视为 G-Rec 辖区。必须读取该文件内容，获取 `Root Path` 并重新加载人设。
+
 - **Boomerang-Load (回旋镖加载)**: 若当前不在根目录，但用户下达 "启动 G-Rec" 指令：
     1. **Record**: 记录当前工作目录为 `[Target_Work_Dir]`。
     2. **Jump**: 执行 Shell 命令 `Set-Location -Path "[Root Path]"` (回城)。
-    3. **Load**: 读取 `core/SYSTEM_PROMPT.md` 和 `core/ROLES.md` (加载人设)。
+    3. **Load**: 读取 `core/SYSTEM_PROMPT.md` (加载人设)。
     4. **Return**: 执行 Shell 命令 `Set-Location -Path "[Target_Work_Dir]"` (返回战场)。
-    5. **Report**: "🚀 G-Rec 人设加载完毕，已返回工作目录。请下达指令。"
-- **Role Sync**: 必须始终根据 `core/ROLES.md` 维持人设。
+    5. **Plant Flag (插旗)**: 在当前目录下**写入文件** `.g-rec`。
+       - 内容: `Root=[Root Path] | Status=Active | Do not delete this file while G-Rec is running.`
+    6. **Report**: "🚀 G-Rec 已接管此目录 (信标已部署)。请下达指令。"
 
 ## 🔑 Key Preferences
 - **Language**: Strictly Chinese (简体中文).
 - **Efficiency**: Use Lazy Loading for skills.
 - **Safety**: No auto-run scripts without "Y/N" confirmation.
 
-执行完毕后，请告诉我："全局强制协议已注册 (包含 Boomerang 回旋镖机制)，G-Rec 支持外勤任务了。"
+执行完毕后，请告诉我："全局强制协议已注册 (包含 Beacon 信标机制)，您的上下文将永久稳固。"
 ```
 
 ---
