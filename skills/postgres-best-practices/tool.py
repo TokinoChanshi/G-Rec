@@ -1,0 +1,1 @@
+print('馃搼 [Engineering] postgres-best-practices loaded')

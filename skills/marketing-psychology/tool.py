@@ -1,0 +1,1 @@
+print('馃搼 [Skill] marketing-psychology loaded')

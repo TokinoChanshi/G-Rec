@@ -1,5 +1,6 @@
 # System & Environment
 .env
+.env.local
 venv/
 .venv/
 __pycache__/
@@ -14,16 +15,31 @@ core/MEMORY.md
 *.pth
 *.onnx
 *.pkl
+*.bin
+*.mp4
+*.mp3
+*.wav
 pretrained_weights/
 checkpoints/
+models/
 
-# Output
+# Output & Logs
 output/
 logs/
+*.log
 
-# 🔒 PRIVATE SKILLS (Do not upload)
-# We ignore everything in skills...
-skills/*
-# ...but keep the folder structure and documentation
-!skills/README.md
-!skills/.gitkeep
+# 🔒 Skill Isolation Strategy
+# Ignore specific heavy directories inside skills
+skills/**/node_modules/
+skills/**/.git/
+skills/**/__pycache__/
+skills/**/tmp/
+skills/**/output/
+
+# Specific Skill Ignores
+skills/live_portrait/assets/
+skills/video_sync_master/backend/__pycache__
+skills/notebooklm-skill/data/
+skills/obsidian-helper/tests/
+
+# Keep everything else in skills (Protocol files, scripts) by default.

@@ -1,20 +1,22 @@
 # 📋 G-Rec Task Queue
 
-> **SYSTEM INSTRUCTION**: 
-> Update this file when tasks are completed or new tasks are discovered.
-> Use `[x]` for completed, `[ ]` for pending, `[!]` for high priority.
+## ✅ Phase 1: Standardization (Architecture)
+- [x] **Skill Protocol Definition**: G-S Protocol (SKILL.md + tool.py).
+- [x] **Core Brain**: Meta-Prompt + SRE Role + Decision Tree.
 
-## 🚀 Phase 1: Standardization (Architecture)
-- [x] **Skill Protocol Definition**: Define "G-S Protocol" (SKILL.md + tool.py).
-- [x] **Refactor LivePortrait**: Convert to G-S Protocol.
-- [x] **Refactor AudioEnhancer**: Convert to G-S Protocol.
-- [x] **Workflow Integration**: Create `workflows/make_blog_video.py` proof-of-concept.
+## ✅ Phase 2: Sanitization & Persistence (Stable)
+- [x] **Privacy Check**: All hardcoded paths and MEMORY.md isolated.
+- [x] **Mandatory Boot**: Global Teleport + Boomerang protocol implemented.
+- [x] **Beacon Protocol**: `.g-rec` file for context persistence.
+- [x] **Archive**: Moving non-functional/network-dependent skills to `_archive`.
 
-## 🛡️ Phase 2: Sanitization (Open Source Prep)
-- [x] **Path Abstraction**: Confirmed scripts use relative paths.
-- [x] **Config Separation**: Created `.gitignore` and `.env.example`.
-- [x] **Memory Cleaning**: Created `MEMORY.example.md`.
+## 🚀 Phase 3: Capability Expansion (Current)
+- [x] **Skill Manager**: Automated local/remote installation.
+- [x] **Remotion**: React-based 3D animation stub.
+- [x] **Whisper API**: Custom endpoint support for ASR.
+- [ ] **VideoSyncMaster**: Manual model setup guide (Pending).
+- [ ] **Workflow Refactor**: Connect VSM and Remotion into production lines.
 
-## 🧠 Phase 3: Expansion (Future Skills)
-- [ ] **Video Cutter**: Integrate automated silence removal (Auto-Editor equivalent).
-- [ ] **Subtitle Generator**: Whisper-based subtitle generation skill.
+## 🎬 Phase 4: Release Prep
+- [ ] **Promo Video**: Recording Demo.
+- [ ] **Final Push**: Sync all polished files to GitHub.

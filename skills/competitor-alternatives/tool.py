@@ -1,0 +1,1 @@
+print('馃搼 [Marketing] competitor-alternatives logic loaded from SKILL.md')

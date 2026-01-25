@@ -1,0 +1,1 @@
+print('馃搼 [Marketing] pricing-strategy logic loaded from SKILL.md')

@@ -1,0 +1,13 @@
+# Core G-Rec Framework Dependencies
+python-dotenv>=1.0.0
+requests>=2.31.0
+pydub>=0.25.1
+colorama>=0.4.6
+
+# Skill Specific Dependencies
+# PPTX Assistant
+python-pptx>=0.6.21
+
+# Optional: Skill Dependencies (Users can install these later)
+# openai>=1.0.0  # For Whisper API
+# speechrecognition  # For Google ASR

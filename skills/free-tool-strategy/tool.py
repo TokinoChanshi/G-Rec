@@ -1,0 +1,1 @@
+print('馃搼 [Marketing] free-tool-strategy logic loaded from SKILL.md')

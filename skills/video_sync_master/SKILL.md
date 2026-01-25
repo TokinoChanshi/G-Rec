@@ -1,26 +1,35 @@
 # Skill: Video Sync Master (VSM)
 
 ## Description
-A powerful tool for **Lip-Syncing** and **Video Translation**.
-It uses Wav2Lip technology to synchronize a video's lip movements to match a new audio track (dubbing).
+A powerful tool for **Lip-Syncing**, **Translation**, and **Dubbing**.
+It integrates WhisperX (ASR), Qwen (Translation), and MaskGCT (TTS) into a single pipeline.
 
-## Usage Cases
-1.  **Dubbing**: Replace the original voice with a translated TTS voice and fix the lips.
-2.  **Repair**: Fix bad lip-sync in existing footage.
+## Usage (Subcommands)
 
-## How to Run (G-S Protocol)
-Use the `tool.py` wrapper to interact with the underlying `inference.py`.
-
+### 1. Extract Subtitles (ASR)
 ```bash
-python skills/video_sync_master/tool.py --video "path/to/video.mp4" --audio "path/to/new_audio.wav"
+python skills/video_sync_master/tool.py asr --video "input.mp4" --service jianying
+```
+
+### 2. Translate Text
+```bash
+python skills/video_sync_master/tool.py translate --text "Hello" --lang "Chinese"
+```
+
+### 3. Full Dubbing (Translate + TTS + LipSync)
+```bash
+python skills/video_sync_master/tool.py dub --video "input.mp4" --lang "Japanese" --tts indextts
+```
+
+### 4. Lip Sync Only
+```bash
+python skills/video_sync_master/tool.py sync --video "face.mp4" --audio "voice.wav"
 ```
 
 ## Arguments
-- `--video`: (Required) Path to the source video (face).
-- `--audio`: (Required) Path to the target audio (voice).
-- `--quality`: (Optional) "Fast", "High", "Enhanced". Default: "Enhanced".
-- `--output`: (Optional) Path to save result.
+- `asr`: Extract text. Supports `whisperx` (local) or `jianying` (cloud).
+- `dub`: Full flow. Requires local models in `models/`.
+- `sync`: Wav2Lip logic only.
 
 ## Dependency Note
-This tool requires **PyTorch** and **FFmpeg**. 
-Ensure `requirements.txt` is installed.
+Requires `requirements.txt` and `models/` folder for offline features.

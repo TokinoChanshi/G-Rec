@@ -1,0 +1,1 @@
+print('馃搼 [Marketing] paid-ads logic loaded from SKILL.md')

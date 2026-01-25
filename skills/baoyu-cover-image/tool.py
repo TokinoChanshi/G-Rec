@@ -1,0 +1,1 @@
+print('馃帹 [Baoyu] baoyu-cover-image is a Prompt-Based Skill. Please read SKILL.md.')

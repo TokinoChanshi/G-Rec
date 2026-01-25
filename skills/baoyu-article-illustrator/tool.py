@@ -1,0 +1,1 @@
+print('馃帹 [Baoyu] baoyu-article-illustrator is a Prompt-Based Skill. Please read SKILL.md.')
