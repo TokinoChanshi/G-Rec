@@ -2,56 +2,63 @@ import argparse
 import sys
 import os
 import json
+import torch
+import whisper
 from pathlib import Path
-from dotenv import load_dotenv
+from datetime import timedelta
 
-# Load env variables
-load_dotenv()
+def format_timestamp(seconds: float):
+    td = timedelta(seconds=seconds)
+    total_seconds = int(td.total_seconds())
+    hours = total_seconds // 3600
+    minutes = (total_seconds % 3600) // 60
+    secs = total_seconds % 60
+    millis = int(td.microseconds / 1000)
+    return f"{hours:02d}:{minutes:02d}:{secs:02d},{millis:03d}"
 
-def run_custom_asr(audio_path, api_key, base_url, model):
-    print(f"🎬 [Custom API] Transcribing {Path(audio_path).name} using {model}...")
+def write_srt(segments, output_path):
+    with open(output_path, "w", encoding="utf-8") as f:
+        for i, segment in enumerate(segments, start=1):
+            start = format_timestamp(segment['start'])
+            end = format_timestamp(segment['end'])
+            text = segment['text'].strip()
+            f.write(f"{i}\n{start} --> {end}\n{text}\n\n")
+
+def run_local_whisper(video_path, model_name, device):
+    print(f"🎬 [Local Whisper] Loading model '{model_name}' on {device}...")
     
     try:
-        from openai import OpenAI
-    except ImportError:
-        return {"status": "error", "message": "Missing dependency: pip install openai"}
-
-    # Initialize client with custom base_url
-    client = OpenAI(api_key=api_key, base_url=base_url)
-    
-    audio_file = Path(audio_path)
-    
-    try:
-        with open(audio_file, "rb") as f:
-            # Note: Many custom servers still use "whisper-1" as the endpoint name 
-            # even if the underlying model is different. 
-            # But we will try the model name provided by user.
-            transcript = client.audio.transcriptions.create(
-                model=model, 
-                file=f,
-                response_format="srt"
-            )
+        # Load Model
+        model = whisper.load_model(model_name, device=device)
+        
+        # Transcribe
+        print(f"🎙️ Transcribing {Path(video_path).name}...")
+        result = model.transcribe(video_path)
         
         # Save SRT
-        srt_path = audio_file.with_suffix(".srt")
-        with open(srt_path, "w", encoding="utf-8") as f:
-            f.write(transcript)
-            
-        print(f"✅ Transcription complete!")
-        return {"status": "success", "subtitle_path": str(srt_path), "content_preview": transcript[:100] + "..."}
+        output_path = Path(video_path).with_suffix(".srt")
+        write_srt(result["segments"], output_path)
+        
+        print(f"✅ Subtitles saved to: {output_path}")
+        return {
+            "status": "success", 
+            "subtitle_path": str(output_path),
+            "text_preview": result["text"][:100] + "..."
+        }
 
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--audio", required=True)
-    parser.add_argument("--api_key", required=True)
-    parser.add_argument("--base_url", required=True)
-    parser.add_argument("--model", required=True)
+    parser = argparse.ArgumentParser(description="G-Rec Local Whisper Tool")
+    parser.add_argument("--video", required=True, help="Path to input video/audio file")
+    parser.add_argument("--model", default="medium", help="Model size: tiny, base, small, medium, large")
+    parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu", help="Device: cuda or cpu")
+    
     args = parser.parse_args()
     
-    res = run_custom_asr(args.audio, args.api_key, args.base_url, args.model)
+    # Run
+    res = run_local_whisper(args.video, args.model, args.device)
     print(json.dumps(res, indent=2, ensure_ascii=False))
 
 if __name__ == "__main__":

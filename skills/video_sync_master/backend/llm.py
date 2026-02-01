@@ -1,9 +1,36 @@
 import os
 import torch
+import requests
 from transformers import AutoModelForCausalLM, AutoTokenizer
+
+def google_translate(text, target="en"):
+    """
+    Fallback translator using Google Translate public API.
+    """
+    url = "https://translate.googleapis.com/translate_a/single"
+    lang_map = {"English": "en", "Chinese": "zh-CN", "Japanese": "ja"}
+    target_code = lang_map.get(target, "en")
+    
+    params = {
+        "client": "gtx",
+        "sl": "auto",
+        "tl": target_code,
+        "dt": "t",
+        "q": text
+    }
+    try:
+        r = requests.get(url, params=params, timeout=5)
+        if r.status_code == 200:
+            # Result is [[["Translated Text", "Original", ...], ...], ...]
+            return r.json()[0][0][0]
+    except Exception as e:
+        print(f"Google Translate error: {e}")
+    return text # Return original if failed
 
 class LLMTranslator:
     def __init__(self, model_dir=None):
+        self.use_fallback = False
+        
         if model_dir is None:
             # Path Logic
             base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -27,8 +54,9 @@ class LLMTranslator:
         try:
             self.tokenizer = AutoTokenizer.from_pretrained(self.model_dir, trust_remote_code=True)
         except Exception as e:
-            print(f"Failed to load tokenizer: {e}")
+            print(f"Failed to load tokenizer: {e}. Switching to Fallback Mode.")
             self.model = None
+            self.use_fallback = True
             return
 
         # Try to load model with 4-bit quantization
@@ -66,12 +94,14 @@ class LLMTranslator:
                     torch_dtype=torch.float16
                 )
             except Exception as e2:
-                print(f"Failed to load LLM: {e2}")
+                print(f"Failed to load LLM: {e2}. Switching to Fallback Mode.")
                 self.model = None
+                self.use_fallback = True
 
     def translate(self, text, target_lang="English"):
-        if not self.model:
-            return None
+        if self.use_fallback or not self.model:
+            print(f"[LLM] Using Google Translate Fallback for: {text[:20]}...")
+            return google_translate(text, target_lang)
         
         messages = [
             {"role": "system", "content": f"You are a high-level translator. Translate the given text into {target_lang}. Output ONLY the translated text. Do not output the original text. Do not explain."},

@@ -254,7 +254,7 @@ def run_asr(audio_path, model_path=None, service="whisperx", output_dir=None, va
     1. Transcribe (Faster-Whisper generic / Cloud)
     2. Align (WhipserX Phoneme Alignment - Only for WhisperX)
     """
-    
+    print(f"DEBUG: run_asr called with service={service}", flush=True)
 
     
     # If input is video, extract audio first
@@ -326,6 +326,29 @@ def run_asr(audio_path, model_path=None, service="whisperx", output_dir=None, va
             })
         print(f"Bcut ASR complete. {len(segments)} segments.")
         return segments
+
+    elif service == "openai_whisper":
+        print(f"Running OpenAI Whisper (Standard) on {audio_path}")
+        try:
+            import whisper
+            import torch
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+            model = whisper.load_model("medium", device=device)
+            result = model.transcribe(audio_path)
+            
+            segments = []
+            for seg in result["segments"]:
+                segments.append({
+                    "start": seg["start"],
+                    "end": seg["end"],
+                    "text": seg["text"].strip()
+                })
+            print(f"OpenAI Whisper complete. {len(segments)} segments.")
+            return segments
+        except Exception as e:
+            print(f"OpenAI Whisper failed: {e}")
+            traceback.print_exc()
+            return []
     
     # Default: WhisperX
     

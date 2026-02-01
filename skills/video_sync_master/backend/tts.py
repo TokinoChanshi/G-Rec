@@ -32,25 +32,53 @@ else:
     
 DEFAULT_CONFIG_PATH = os.path.join(DEFAULT_MODEL_DIR, "config.yaml")
 
+# --- Edge TTS Fallback ---
+import asyncio
+try:
+    import edge_tts
+except ImportError:
+    edge_tts = None
+
+async def _run_edge_tts_async(text, output_path, voice):
+    communicate = edge_tts.Communicate(text, voice)
+    await communicate.save(output_path)
+
+def run_edge_tts_sync(text, output_path, voice="en-US-ChristopherNeural"):
+    if not edge_tts:
+        print("Edge-TTS not installed.")
+        return False
+    try:
+        # Use Christopher (Deep Male) for English, Yunxi (Male) for Chinese
+        if any(c in text for c in ["你好", "谢谢", "的", "是"]):
+             voice = "zh-CN-YunxiNeural"
+        
+        print(f"[EdgeTTS] Synthesizing with {voice}: {text[:30]}...")
+        asyncio.run(_run_edge_tts_async(text, output_path, voice))
+        return True
+    except Exception as e:
+        print(f"EdgeTTS Error: {e}")
+        return False
+# -------------------------
+
 def run_tts(text, ref_audio_path, output_path, model_dir=None, config_path=None, language="English", **kwargs):
     """
     Run Voice Cloning TTS.
-    :param text: Text to speak.
-    :param ref_audio_path: Path to reference audio (3-10s).
-    :param output_path: Where to save the result.
-    :param model_dir: Path to model checkpoints.
-    :param config_path: Path to config.yaml.
-    :param language: Target language (Chinese, English, Japanese, Korean)
     """
+    # Check if we should fallback immediately
     if IndexTTS2 is None:
-        print("IndexTTS2 not available.")
-        return False
+        print("IndexTTS2 not available. Falling back to Edge-TTS...")
+        return run_edge_tts_sync(text, output_path)
     
     if model_dir is None:
         model_dir = DEFAULT_MODEL_DIR
     if config_path is None:
         config_path = DEFAULT_CONFIG_PATH
         
+    # Check if config exists, if not, fallback
+    if not os.path.exists(config_path):
+         print(f"IndexTTS config not found at {config_path}. Falling back to Edge-TTS...")
+         return run_edge_tts_sync(text, output_path)
+
     print(f"Initializing IndexTTS2 from {model_dir}...")
     
     

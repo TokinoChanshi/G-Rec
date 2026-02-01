@@ -3,7 +3,8 @@ import os
 import ffmpeg
 import os
 import tempfile
-# Lazy imports: numpy, soundfile, librosa
+import numpy as np
+# Lazy imports: soundfile, librosa
 
 def get_audio_duration(file_path):
     try:
@@ -106,7 +107,7 @@ def merge_audios_to_video(video_path, audio_segments, output_path, strategy='aut
         print(f"[Mixer] Initialized buffer: {video_duration:.2f}s ({total_samples} samples)", flush=True)
 
         # 2. Mix audio segments
-        import numpy as np
+        # Lazy imports for other heavy libs if needed, but numpy is global now
         import librosa
         import soundfile as sf
         

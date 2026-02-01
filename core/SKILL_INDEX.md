@@ -15,6 +15,11 @@
 - **Path**: `skills/baoyu-image-gen/`
 - **Trigger**: "Generate image (DALL-E)".
 
+### 📦 Model Release Kit
+- **Path**: `skills/model-release-kit/`
+- **Trigger**: "Release model", "Civitai post", "Model showcase", "模型发布".
+- **Description**: One-stop kit for AI model releases, supporting all 13 Civitai model types with dual-language descriptions, tags, and marketing scripts.
+
 ### 🎬 Video Production
 - **Path**: `skills/video_sync_master/`
 - **Description**: AI dubbing, translation, and lip-syncing.
@@ -25,8 +30,14 @@
 - **Trigger**: "Transcribe", "Generate subtitle".
 - **Path**: `skills/audio_enhancer/`
 - **Trigger**: "Clean audio", "Fix voice".
-- **Path**: `skills/gemini_asr/`
-- **Trigger**: "Extract audio", "Prepare for Gemini".
+
+### 📥 Media Downloader
+- **Path**: `skills/media-downloader/`
+- **Trigger**: "Download video", "Get clips", "Media downloader".
+
+### 🎥 Remotion Best Practices
+- **Path**: `skills/remotion-best-practices/`
+- **Trigger**: "Remotion advanced", "High energy edit", "Remotion patterns".
 
 ### 🪄 Remotion (Programmatic Video)
 - **Path**: `skills/remotion/`
@@ -116,6 +127,22 @@
 - **Path**: `core/manager.py`
 - **Trigger**: "Add skill", "Install plugin".
 
+### ✅ Task Manager
+- **Path**: `core/task_manager.py`
+- **Trigger**: "Add task", "List tasks", "Finish task", "Check queue".
+
+### 🏥 System Health (The Doctor)
+- **Path**: `core/health.py`
+- **Trigger**: "Check system", "System health", "Diagnose", "Health check".
+
+### 🛡️ Error Prevention (The Shield)
+- **Path**: `core/prevention.py`
+- **Trigger**: "Scan risk", "Check safety", "Pre-flight check".
+
+### 🧬 Darwin Engine (Evolution)
+- **Path**: `core/evolution.py`
+- **Trigger**: "Evolve memory", "Update config", "Mutate skill".
+
 ### 🧬 Skill Creator
 - **Path**: `skills/skill-creator/`
 - **Trigger**: "Create new skill", "Skill factory".
@@ -125,4 +152,4 @@
 - **Trigger**: "Ask NotebookLM", "Organize Obsidian".
 
 ---
-*Status: THE ULTIMATE AGENT SYSTEM | G-S Protocol V2.1*
+*Status: THE ULTIMATE AGENT SYSTEM | G-S Protocol V2.2 (Self-Evolving)*

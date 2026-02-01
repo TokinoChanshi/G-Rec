@@ -6,6 +6,10 @@ import json
 import uuid
 import os
 from pathlib import Path
+
+# --- Force CPU Mode for absolute stability ---
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1" 
+
 from dotenv import load_dotenv
 
 # --- Configuration ---
@@ -46,8 +50,8 @@ def run_processing(input_path: str, preset: str):
     work_dir = SKILL_ROOT / f"tmp_{session_id}"
     work_dir.mkdir(exist_ok=True)
     
-    suffix = "_cleaned" if preset == "broadcast" else "_aggressive"
-    output_file = input_file.with_name(f"{input_file.stem}{suffix}{input_file.suffix}")
+    # Force MP4 output to avoid WebM/H.264/AAC incompatibility
+    output_file = input_file.with_name(f"{input_file.stem}_cleaned.mp4")
 
     try:
         # Step 1: Extract Audio (to 48k wav)
@@ -62,7 +66,9 @@ def run_processing(input_path: str, preset: str):
 
         # Step 2: DeepFilterNet (AI Denoise)
         # DeepFilterNet creates a file with a specific suffix
-        subprocess.run([DEEPFILTER_BIN, str(raw_wav), "-o", str(work_dir)], check=True)
+        env = os.environ.copy()
+        env["CUDA_VISIBLE_DEVICES"] = "" # Force CPU to avoid CUDA/cuDNN errors
+        subprocess.run([DEEPFILTER_BIN, str(raw_wav), "-o", str(work_dir)], env=env, check=True)
         
         # Determine the name of the file DeepFilter just created
         # Usually it appends _DeepFilterNet3.wav
@@ -86,15 +92,17 @@ def run_processing(input_path: str, preset: str):
         ], check=True)
 
         # Step 4: Remux (Combine original video + new audio)
+        # We use -map 0:v? to handle audio-only sources gracefully
         subprocess.run([
             FFMPEG_BIN, "-v", "error", "-y",
             "-i", str(input_file),
             "-i", str(final_wav),
-            "-map", "0:v:0", # Map original video
+            "-map", "0:v?", # Map original video if exists
             "-map", "1:a:0", # Map processed audio
             "-map_metadata", "0", # Copy global metadata
             "-c:v", "copy",  # Fast copy video stream
             "-c:a", "aac", "-b:a", "192k",
+            "-movflags", "+faststart", # Better for web streaming
             "-shortest",
             str(output_file)
         ], check=True)

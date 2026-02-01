@@ -1,45 +1,36 @@
-# System & Environment
+# --- Security & Secrets ---
 .env
 .env.local
-venv/
-.venv/
+**/*apikey*
+**/secrets.*
+assets/user-config.json
+
+# --- System State ---
+.g-rec
+core/MEMORY.md
+core/EVOLUTION_LOG.md
+core/EVOLUTION_PROTOCOL.md
+core/TASK_QUEUE.md
+core/evolution.py
+
+# --- User Content (Skills are Personal) ---
+skills/*
+!skills/README.md
+!skills/skill-creator/
+!skills/_archive/
+skills/live_portrait/
+res-downloader/
+workspace/
+
+# --- Outputs & Logs ---
+logs/
+output/
 __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
 
-# User Specific Memory
-core/MEMORY.md
-
-# Large Files & Models
-*.pth
-*.onnx
-*.pkl
-*.bin
-*.mp4
-*.mp3
-*.wav
-pretrained_weights/
-checkpoints/
-models/
-
-# Output & Logs
-output/
-logs/
-*.log
-
-# 🔒 Skill Isolation Strategy
-# Ignore specific heavy directories inside skills
-skills/**/node_modules/
-skills/**/.git/
-skills/**/__pycache__/
-skills/**/tmp/
-skills/**/output/
-
-# Specific Skill Ignores
-skills/live_portrait/assets/
-skills/video_sync_master/backend/__pycache__
-skills/notebooklm-skill/data/
-skills/obsidian-helper/tests/
-
-# Keep everything else in skills (Protocol files, scripts) by default.
+# --- Legacy/Specific ---
+skills/media-downloader/downloads/
+skills/media-downloader/cache/
+skills/video_sync_master/models/

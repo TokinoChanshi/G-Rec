@@ -1,91 +1,79 @@
-# G-Rec (Gemini Reconstruction)
+# 🚀 G-Rec v2.0: The Awakening (觉醒)
 
-<div align="center">
+> **The First Self-Healing, Self-Governing Agent Operating System.**
+> **首个具备自愈与自治能力的智能体操作系统。**
+> *Release Date / 发布日期: 2026-02-01*
 
-![Gemini 3.0 Pro](https://img.shields.io/badge/Model-Gemini%203.0%20Pro-4285F4?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge)
-![Role](https://img.shields.io/badge/Role-Multi--Persona-purple?style=for-the-badge)
-
-**A Multi-Persona AI Framework for Codebase Evolution & Content Production.**  
-**基于 "多重人格" 架构的本地化全栈工程伙伴。**
-
-[English](#english) | [中文](#chinese)
-
-</div>
+[English](#english) | [简体中文](#chinese)
 
 ---
 
 <a name="english"></a>
-## 🌍 English Introduction
+## 🌟 English Description
 
-**G-Rec** is a localized CLI agent architecture powered by **Gemini 3.0 Pro**.
+### About
+**G-Rec (Gemini Reconstruction)** is a localized CLI agent architecture powered by **Gemini 3.0 Pro**.
 
-> **💡 Inspiration & Credits**:
+> **🔧 Inspiration & Credits**:
 > This project is heavily inspired by **[claude-Reconstruction](https://github.com/Arxchibobo/claude-Reconstruction)** created by **[Arxchibobo](https://github.com/Arxchibobo)**.
 > We stand on the shoulders of giants to evolve the "Directory-as-Context" philosophy for **Windows Native Environments** and **Automated Video Production**.
 
-G-Rec implements a **Hybrid Engine** capable of both deep Codebase Understanding and Automated Content Production.
+Unlike traditional scripts, G-Rec possesses an **Autonomic Nervous System (ANS)** that allows it to perceive, govern, defend, and heal itself. It turns a standard LLM into a **Resident Engineer** living in your file system.
 
-> **⚠️ Open Source Disclaimer**:
-> This repository contains the **G-Rec Core Framework** only.
-> Proprietary skills (e.g., LivePortrait) are excluded. You must implement your own skills following the [Contributing Guide](docs/CONTRIBUTING.md).
+### 🔥 Key Features (v2.0)
+- **ANS v3.2 (The Core Brain)**: Cognitive loop for Intent Recognition, Task Governance, and Tool Selection.
+- **The Shield**: Proactive safety module that scans commands against the `MISTAKE_BOOK.md`.
+- **The Doctor**: Built-in diagnostic tool (`python core/health.py`).
+- **Skill Ecosystem**: Kernel + App architecture. Keep the core clean while extending capabilities.
+- **Token Efficiency**: "Lazy Loading" mechanism does not bloat context with unused tools.
 
-### 🌟 Key Features
+### 🚀 Getting Started
+1. **Clone**: `git clone https://github.com/your-username/G-Rec.git`
+2. **Initialize**: `setup.bat` or `pip install -r requirements.txt`
+3. **Health Check**: `python core/health.py`
 
-*   **⚡ Token Efficiency (Lazy Loading)**: Unlike traditional agents, G-Rec does not bloat context with unused tools. It loads skill definitions on-demand. (See [Architecture](docs/ARCHITECTURE.md))
-*   **🧠 Dual Core Engine**:
-    *   **Architect Mode**: Deep understanding and refactoring of complex projects via `references/` injection.
-    *   **Producer Mode**: Automating creative workflows (Video/Audio) via the **G-S Protocol**.
-*   **📚 Knowledge Injection**: Simply drop PDF/MD files into `references/`, and G-Rec creates an instant knowledge base without RAG setup.
-*   **🪟 Windows Native**: Optimized for local Windows environments (PowerShell, encoding, paths).
-
-### 📚 Documentation
+### 📋 Documentation
 *   [**Architecture & Design**](docs/ARCHITECTURE.md): How it works and why it saves tokens.
 *   [**Dynamic Roles**](docs/ROLES_GUIDE.md): Meet the Architect, the Producer, and the SRE.
 *   [**Contributing Skills**](docs/CONTRIBUTING.md): How to build your own tools.
-*   [**Prompting Guide**](docs/PROMPTING.md): Best practices for interaction.
 
 ---
 
 <a name="chinese"></a>
-## 🇨🇳 中文介绍
+## 🌟 中文说明
 
-**G-Rec** 是一个基于 **Gemini 3.0 Pro** 的本地化智能体架构。
+### 关于项目
+**G-Rec (Gemini Reconstruction)** 是一款受生物学启发的**智能体操作系统 (Agent OS)**，旨在您的本地机器上运行。
 
-> **💡 致敬与灵感**:
-> 本项目深受 **[Arxchibobo](https://github.com/Arxchibobo)** 大佬的 **[claude-Reconstruction](https://github.com/Arxchibobo/claude-Reconstruction)** 项目启发。
-> 我们对其提出的 "Directory-as-Context" (目录即上下文) 理念进行了**Windows 本地化适配**与**视频生产场景**的深度拓展。在此向原作者表示诚挚感谢！
+> **🔧 致敬与灵感**:
+> 本项目深受到 **[Arxchibobo](https://github.com/Arxchibobo)** 大佬的 **[claude-Reconstruction](https://github.com/Arxchibobo/claude-Reconstruction)** 项目启发。
+> 我们对其提出的 "Directory-as-Context" (目录即上下文) 理念进行了 **Windows 本地化适配**与**视频生产场景**的深度拓展。在此向原作者表示诚挚感谢！
 
-通过 **多重人格 (Multi-Persona)** 机制，G-Rec 打造了一个既能重构代码，又能自动化生产内容的双核 AI 引擎。
+与传统脚本不同，G-Rec 拥有**自主神经系统 (ANS)**，使其能够感知意图、管理任务、自我防护并自动修复环境。它将标准的 LLM 转化为一个居住在您文件系统中的**驻场工程师**。
 
-> **⚠️ 开源免责声明**:
-> 本仓库仅包含 **G-Rec 核心框架**。
-> 具体技能模块请参考文档自行扩展。
+### 🔥 核心特性 (v2.0)
+- **ANS v3.2 (核心大脑)**: 包含意图识别、任务治理（严格执行“领票”制度）和工具选择的认知闭环。
+- **The Shield (盾牌)**: 主动安全模块，根据`MISTAKE_BOOK.md`（错误本）拦截危险指令。
+- **The Doctor (医生)**: 内置诊断工具。运行 `python core/health.py` 检查系统完整性。
+- **技能生态**: 采用“内核+应用”架构。保持内核纯净的同时，支持无限扩展。
+- **极致 Token 节省**: 仅在需要时加载技能上下文。
 
-### 🌟 核心亮点
+### 🚀 快速开始
+1. **克隆仓库**: `git clone https://github.com/your-username/G-Rec.git`
+2. **初始化**: 运行 `setup.bat` 或 `pip install -r requirements.txt`
+3. **系统自检**: `python core/health.py`
 
-*   **⚡ 极致节省 Token**: 采用“懒加载”机制，只有在使用特定技能时才加载上下文，支持无限扩展技能库而不降低模型智商。(详见 [架构文档](docs/ARCHITECTURE.md))
-*   **🧠 双核驱动**:
-    *   **架构师模式**: 直接读取 `references/` 文档库，秒级理解陌生代码。
-    *   **制作人模式**: 通过 G-S 协议调用本地 Python 工具，实现媒体生产自动化。
-*   **📚 知识注入**: 只要把 PDF/MD 扔进 `references/` 目录，无需配置向量数据库，AI 立刻学会新知识。
-*   **🪟 Windows 深度适配**: 专为本地开发者打造，解决中文路径和环境依赖痛点。
+### 📋 任务管理器用法 (Task Manager)
+```bash
+# 添加任务
+python core/task_manager.py add "任务描述"
 
-### 📚 文档中心
-*   [**架构原理**](docs/ARCHITECTURE.md): 了解它是如何帮你省钱的。
-*   [**角色指南**](docs/ROLES_GUIDE.md): 认识架构师、制作人和 SRE。
-*   [**技能贡献**](docs/CONTRIBUTING.md): 手把手教你写插件。
-*   [**提示词指南**](docs/PROMPTING.md): 让 AI 听懂你的话。
+# 完成任务
+python core/task_manager.py done "关键词"
+```
 
-### 🚀 Quick Start
+## 📜 License / 许可证
+MIT License. See the [LICENSE](LICENSE) file for details.
 
-> **🐣 New to CLI? / 小白用户？**
-> Don't know how to run commands? Just copy the prompt from [**INSTALL_GUIDE_FOR_AI.md**](INSTALL_GUIDE_FOR_AI.md) and paste it to your AI Assistant.
-> 不懂代码？直接复制 [**给 AI 的安装指令**](INSTALL_GUIDE_FOR_AI.md) 发给你的 Gemini 即可。
-
-1.  **Initialize**: `setup.bat`
-2.  **Add Skills**: Drop python tools into `skills/`.
-3.  **Run**: `python workflows/make_blog_video.py`
-
-## 📜 License
-MIT License.
+---
+*Generated by G-Rec Agent Skill: crafting-effective-readmes*

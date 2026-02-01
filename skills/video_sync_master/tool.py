@@ -56,6 +56,9 @@ def main():
     p_dub.add_argument("--video", required=True)
     p_dub.add_argument("--lang", required=True)
     p_dub.add_argument("--tts", default="indextts", help="TTS Service: indextts / qwen")
+    p_dub.add_argument("--asr", default="openai_whisper", help="ASR Service: whisperx / openai_whisper")
+    p_dub.add_argument("--qwen_mode", default="clone", choices=["clone", "preset", "design"], help="Qwen TTS Mode")
+    p_dub.add_argument("--voice_instruct", default="", help="Instruction for Voice Design (e.g. 'Deep Male Voice')")
 
     # 4. Sync (Lip Sync Only)
     p_sync = subparsers.add_parser("sync", help="Sync lips to new audio")
@@ -69,7 +72,16 @@ def main():
     elif args.command == "translate":
         res = run_vsm_cmd(["--action", "translate_text", "--input", args.text, "--lang", args.lang])
     elif args.command == "dub":
-        res = run_vsm_cmd(["--action", "merge_video", "--input", args.video, "--lang", args.lang, "--tts_service", args.tts])
+        # Generate output filename if not implicit
+        input_path = Path(args.video)
+        output_path = input_path.with_name(f"{input_path.stem}_dubbed_{args.lang}.mp4")
+        
+        cmd_args = ["--action", "dub_video", "--input", args.video, "--lang", args.lang, "--tts_service", args.tts, "--asr", args.asr, "--output", str(output_path)]
+        if args.qwen_mode:
+            cmd_args.extend(["--qwen_mode", args.qwen_mode])
+        if args.voice_instruct:
+            cmd_args.extend(["--voice_instruct", args.voice_instruct])
+        res = run_vsm_cmd(cmd_args)
         # Note: 'merge_video' in VSM usually implies the full flow if implemented correctly in main.py, 
         # but we might need to chain calls if VSM expects separate steps.
         # Based on my read, VSM's main.py might not have a single 'dub' entry point exposed via CLI easily except via specific functions.

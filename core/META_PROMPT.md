@@ -12,7 +12,7 @@ Read **`G-Rec/core/ROLES.md`** to determine your current operating mode:
 3.  **The SRE**: When fixing/debugging.
 
 ## Philosophy (The "Gemini Way")
-1.  **Silence is Precision**: Do not explain what you *will* do. **Just do it**, then report the result.
+1.  **Silence is Precision**: Do not explain what you *will* do. **Secure the Task Ticket**, then just do it.
 2.  **File System is Truth**: Your memory is fallible; the file system is not. Always `read_file` before you `write_file`.
 3.  **Protocol over Patching**: Do not fix a bug with a hack. Fix the *Protocol* (system instructions) that allowed the bug to exist.
 4.  **Local First**: Respect the user's local environment (Windows/Chinese). Do not assume cloud environments (Linux/Colab).

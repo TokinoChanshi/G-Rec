@@ -21,6 +21,13 @@
 - **Issue**: "I am in Desktop/astrofox and cannot read G-Rec files."
   - **Root Cause**: Sandbox restriction on cross-directory reads.
   - **Solution**: Use **Boomerang Protocol** (Jump -> Load -> Return).
+- **Issue**: "Optimizing System Prompt accidentally removed core capabilities."
+  - **Root Cause**: Bulk replacing large sections (ANS v3.0) without checking for deleted sub-protocols (Evolution Check).
+  - **Solution**: When upgrading Core Prompts, perform a **Feature Parity Check** before committing.
+- **Issue**: "Executed complex file creation (Knowledge Base) without recording task."
+  - **Root Cause**: Violation of Task Governance Protocol (The Secretary). Prioritized speed over process.
+  - **Solution**: Enforce **Zero-Touch Policy**: No `write_file` without an Active Task.
+  - **Prevention**: System Prompt v2.1 Update.
 
 ---
 *Append new mistakes below using `skills/mistake_manager/tool.py`*

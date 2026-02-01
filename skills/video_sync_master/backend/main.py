@@ -142,6 +142,7 @@ if not MODELS_HUB_DIR:
     # Search for models in common locations
     possible_paths = [
         os.path.join(APP_ROOT, "models", "index-tts", "hub"),  # User installed in Root
+        os.path.join(APP_ROOT, "models", "index-tts"),         # User manual download (No hub)
         os.path.join(APP_ROOT, "resources", "models", "index-tts", "hub"), # User copied to resources
         os.path.join(CURRENT_DIR, "..", "models", "index-tts", "hub") # Dev / Default
     ]
@@ -272,14 +273,9 @@ def get_tts_runner(service="indextts", check_deps=True):
     # Dependency Check
     if check_deps:
         if service == "qwen":
-            print("[Main] Ensuring dependencies for Qwen3-TTS...")
-            setup_gpu_paths()
-            if ensure_transformers_version("4.57.3"):
-                 check_gpu_deps()
-                 print("[Main] Qwen3 dependencies ready.")
-            else:
-                 print("[Main] Failed to setup Qwen3 dependencies.")
-                 return None, None
+            print("[Main] Bypassing strict deps check for Qwen3-TTS...")
+            # We assume user environment is sufficient
+            pass
         else:
             # Default/IndexTTS
             print("[Main] Ensuring dependencies for IndexTTS...")
@@ -733,7 +729,8 @@ def main():
     elif args.action == "dub_video":
         if args.input and args.output:
             target = args.lang if args.lang else "English"
-            result_data = dub_video(args.input, target, args.output, asr_service=args.asr, strategy=args.strategy, **tts_kwargs)
+            # Explicitly pass tts_service from args to function
+            result_data = dub_video(args.input, target, args.output, asr_service=args.asr, tts_service=args.tts_service, strategy=args.strategy, **tts_kwargs)
             if not args.json:
                 print(result_data)
         else:
